@@ -10,6 +10,7 @@ module.exports = (env, argv) => {
 
   return {
     entry: './src/index.js',
+    devtool: 'inline-source-map',
     module: {
       rules: [
         {
@@ -35,14 +36,19 @@ module.exports = (env, argv) => {
             'css-loader',
             'less-loader',
           ],
+        },
+        {
+          test: /\.tsx?$/,
+          use: 'ts-loader',
+          exclude: /node_modules/
         }, {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
-              presets: [ 'babel-preset-es2015', 'babel-preset-stage-0' ],
-              plugins: [ 'babel-plugin-transform-runtime' ],
+              presets: ['babel-preset-es2015', 'babel-preset-stage-0'],
+              plugins: ['babel-plugin-transform-runtime'],
             },
           },
         },
@@ -52,6 +58,7 @@ module.exports = (env, argv) => {
       alias: {
         'res': path.resolve('./res'),
       },
+      extensions: ['.tsx', '.ts', '.js']
     },
     plugins: [
       new OptimizeCSSAssetsPlugin({}),
@@ -61,13 +68,13 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: 'index.html',
       }),
-      new CopyWebpackPlugin([ {
+      new CopyWebpackPlugin([{
         from: 'res/images',
         to: 'res/images',
       }, {
         from: 'res/sounds',
         to: 'res/sounds',
-      } ]),
+      }]),
     ],
     output: {
       filename: 'index.js',

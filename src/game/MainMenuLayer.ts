@@ -2,10 +2,12 @@ import * as ui from 'tinyjs-plugin-ui';
 import StartLayer from './StartLayer';
 
 class MainMenuLayer extends Tiny.Container {
+  private logo: Tiny.Sprite = null;
+
   constructor() {
     super();
 
-    const { width, height } = Tiny.WIN_SIZE;
+    const {width, height} = Tiny.WIN_SIZE;
 
     // Logo
     this.logo = Tiny.Sprite.fromImage(Tiny.resources.logoPNG);
@@ -25,7 +27,7 @@ class MainMenuLayer extends Tiny.Container {
 
     this.addChild(this.logo, startBtn);
 
-    this.on('transitionend', function () {
+    this.on('transitionend', () => {
       this.startAction();
     });
   }
@@ -36,7 +38,7 @@ class MainMenuLayer extends Tiny.Container {
   }
 
   startAction() {
-    const { width, height } = Tiny.WIN_SIZE;
+    const {width, height} = Tiny.WIN_SIZE;
     const action = Tiny.MoveTo(1000, Tiny.point(width / 2, height / 2));
     action.setEasing(Tiny.TWEEN.Easing.Exponential.Out);
 

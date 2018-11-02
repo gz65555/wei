@@ -4,7 +4,7 @@ class StartLayer extends Tiny.Container {
   constructor() {
     super();
 
-    const { width, height } = Tiny.WIN_SIZE;
+    const {width, height} = Tiny.WIN_SIZE;
 
     const txtBtn = new Tiny.Text('⇪⇪\n返回', {
       fontFamily: 'Arial',
