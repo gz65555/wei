@@ -9,7 +9,7 @@ module.exports = (env, argv) => {
   const isDev = argv.mode === 'development';
 
   return {
-    entry: './src/index.js',
+    entry: './src/index.ts',
     devtool: 'inline-source-map',
     module: {
       rules: [
