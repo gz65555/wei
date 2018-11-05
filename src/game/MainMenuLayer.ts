@@ -1,4 +1,3 @@
-import * as ui from 'tinyjs-plugin-ui';
 import StartLayer from './StartLayer';
 
 class MainMenuLayer extends Tiny.Container {
@@ -15,13 +14,7 @@ class MainMenuLayer extends Tiny.Container {
     this.logo.setPosition(width / 2, 40);
 
     // 开始按钮
-    const startBtn = new ui.Button({
-      background: Tiny.Sprite.fromFrame('tileset-vendor-start.png'),
-      active: {
-        scale: 1.4,
-        callback: this.onReady,
-      },
-    });
+    const startBtn = Tiny.Sprite.fromFrame('tileset-vendor-start.png');
     startBtn.setPivot(startBtn.width / 2, startBtn.height / 2);
     startBtn.setPosition(width / 2, height - 260);
 
