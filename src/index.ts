@@ -1,5 +1,5 @@
 import * as resources from './game/resources';
-import MainMenuLayer from './game/MainMenuLayer';
+import GameLayer from './game/GameLayer';
 
 import './css/index.less';
 
@@ -7,9 +7,9 @@ Tiny.app = new Tiny.Application({
   showFPS: true,
   referWidth: 375,
   dpi: 2,
-  renderType: Tiny.RENDERER_TYPE.CANVAS,
+  renderType: Tiny.RENDERER_TYPE.WEBGL,
   renderOptions: {
-    backgroundColor: 0xbbbbbb,
+    backgroundColor: 0x444444,
   },
 });
 
@@ -39,7 +39,7 @@ const main = {
         body.removeChild(percent);
         body.removeChild(progress.parentNode);
 
-        const mainMenuLayer = new MainMenuLayer();
+        const mainMenuLayer = new GameLayer();
         Tiny.app.run(mainMenuLayer);
         mainMenuLayer.emit('transitionend');
       },
@@ -49,11 +49,11 @@ const main = {
 main.init();
 
 // 页面压后台，让游戏停下来
-document.addEventListener('pause', function (e) {
+document.addEventListener('pause', function () {
   Tiny.app.pause();
 }, false);
 
 // 页面恢复运行，让游戏继续
-document.addEventListener('resume', function (e) {
+document.addEventListener('resume', function () {
   Tiny.app.resume();
 }, false);
